@@ -3,35 +3,25 @@ const FRONT = "front";
 const BACK = "back";
 const FLIP = "flip";
 const ICON = "icon";
-const EXTENSSION = ".png"
-const techs = [
-    "c-sharp",
-    "database",
-    "git",
-    "github",
-    "html-5",
-    "java-script",
-    "letter-c",
-    "php",
-    "python",
-    "sass"
-];
+const EXTENSSION = ".png";
 
 
-init();
+startGame();
 
-function init() {
-    let cards = creatCardsFronTechs(techs);
-    suflleCards(cards);
-    console.log(cards);
-    initialize(cards)
-}
+function startGame () {
+    
+    initialize(game.creatCardsFronTechs());
+};
+
 function initialize(cards) {
     
     let gameBoard = document.getElementById("gameBoard")
-    console.log(gameBoard);
+    gameBoard.innerHTML = '';
+    let h1 = document.createElement("h1")
+    h1.innerHTML = 'Memory Game'
+    gameBoard.appendChild(h1)
 
-    cards.forEach(card => {
+    game.cards.forEach(card => {
         
         let cardElement = document.createElement("div");
         cardElement.classList.add(CARD);
@@ -43,13 +33,13 @@ function initialize(cards) {
         cardElement.addEventListener("click", flipcard)
         gameBoard.appendChild(cardElement)
     });
-}
+};
 
 function creatCardContent(card, cardElement) {
     
     creatCardFace(FRONT, card, cardElement);
     creatCardFace(BACK, card, cardElement);
-}
+};
 
 function creatCardFace(face, card, element) {
     
@@ -66,58 +56,43 @@ function creatCardFace(face, card, element) {
         cardElementFace.innerHTML = "&gt;/&lt";
     }
     element.appendChild(cardElementFace)
-}
-function suflleCards(cards) { //Embaralhando as Cartas
+};
+
+function flipcard() {
+    // let potuacao = 0;
+
+    if (game.setCard(this.id)) {
+
+        this.classList.add(FLIP)
+        if (game.secondCard) {
+            if (game.checkMatch()) {
+                game.clearCards();
+                if (game.checkGameOver()){
+                    setTimeout(() => {
+                        let gameOverLayer = document.getElementById("gameOver")
+                        gameOverLayer.style.display = "flex";
+                    }, 500);
+                }
+            }else{
+                setTimeout(() => {
+                    
+                    let firstCardView = document.getElementById(game.firstCard.id);
+                    let secondCardView = document.getElementById(game.secondCard.id);
     
-    currentIndex = cards.length;
-    randomIndex = 0;
-
-    while (currentIndex !== 0) {
-
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]];
-    }
-}
-
-function creatCardsFronTechs(techs) {
-
-    let cards = [];
-
-    techs.forEach(tech => {
-        cards.push(creatPairFromCards(tech));
-    });
-
-    return cards.flatMap(pair => pair);
-    // console.log(cards.flatMap(pair => pair));
-}
-
-function creatPairFromCards(tech) {
+                    firstCardView.classList.remove(FLIP);
+                    secondCardView.classList.remove(FLIP);
+                    game.unflipCards();
     
-    return [{
-        id : creatIdFromCard(tech),
-        flipped : false,
-        icon : tech
-    },{
-        id : creatIdFromCard(tech),
-        flipped : false,
-        icon : tech
-    }];
-}
+                }, 1000);
+            }; 
+        }
+        
+    };  
+};
 
-function creatIdFromCard(tech) {
-    return tech + Math.floor(Math.random() * 100000);
-}
-
-function flipcard(card) {
-    let potuacao = 0;
-    this.classList.add(FLIP)
-    // let icon = card.icon
-    // if (icon !== icon) {
-    //     this.classList.remove(FLIP)
-    // }else{
-    //     potuacao ++
-    // }
-
+function restart() {
+    game.clearCards();
+    startGame();
+    let gameOverLayer = document.getElementById("gameOver")
+    gameOverLayer.style.display = "none";
 }

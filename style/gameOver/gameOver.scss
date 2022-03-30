@@ -1,0 +1,28 @@
+#gameOver{
+    display: none;
+    position: absolute;
+    top: 0;
+    // display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(54, 54, 54);
+    
+    div{
+        font-size: 2.5rem;
+        text-align: center;
+        margin-top: 10vh;
+        margin-bottom: -180px;
+        color: black;
+    }
+    button{
+        background-color: yellow;
+        border: none;
+        color: black;
+        border-radius: 10px;
+        margin: auto;
+        width: 80vw;
+        padding: 10px;
+        font-size: 1.5rem;
+    }
+}

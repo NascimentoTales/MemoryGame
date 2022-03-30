@@ -1,0 +1,32 @@
+#gameOver {
+  display: none;
+  position: absolute;
+  top: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #363636;
+}
+
+#gameOver div {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 10vh;
+  margin-bottom: -180px;
+  color: black;
+}
+
+#gameOver button {
+  background-color: yellow;
+  border: none;
+  color: black;
+  border-radius: 10px;
+  margin: auto;
+  width: 80vw;
+  padding: 10px;
+  font-size: 1.5rem;
+}
+/*# sourceMappingURL=gameOver.css.map */

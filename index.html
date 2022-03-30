@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/body/body.css">
     <link rel="stylesheet" href="style/container/container.css">
+    <link rel="stylesheet" href="style/gameOver/gameOver.css">
     <link href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap" rel="stylesheet">
 </head>
-<body>
+<body>        
+    <!-- <h1>Memory Game</h1> -->
     <div id="gameBoard" class="container">
-        <h1>Memory Game</h1>
         <!-- <div id="54548476" data-set="cpp" class="card">
             <div class="front">
                 <img src="images/c++.png" alt="" srcset="">
@@ -20,6 +21,11 @@
             </div>
         </div> -->
     </div>
+    <div id="gameOver">
+        <div>Parabéns, Você completou o jogo!</div>
+        <button id="restart" onclick="restart()">Jogar Novamente</button>
+    </div>
+    <script src="game.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

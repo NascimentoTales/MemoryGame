@@ -1,0 +1,53 @@
+$CardFrontColor: #101c2c;
+$CardBackColor: #05c3ff;
+.container{
+    margin: auto;
+    text-align: center;
+
+    h1{
+        font-size: 2.5rem;
+        // text-align: center;
+        margin: 15px 0px;
+    }
+    .card{
+        width: 70px;
+        height: 80px;
+        position: relative;
+        margin: 4px;
+        margin-bottom: 4px;
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+        display: inline-flex;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5) ;
+        border-radius: 5px;
+
+        .front, .back{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            position: absolute;   
+            border-radius: 5px;
+ 
+        }
+        .front{
+            background-color: $CardFrontColor;
+            transform: rotateY(180deg);
+            img{
+                width: 80%;
+            }
+        }
+        .back{
+            background-color: $CardBackColor;
+            
+            span{
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .flip{
+        transform: rotateY(180deg);
+    }
+}

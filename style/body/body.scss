@@ -1,0 +1,15 @@
+$backgroundColorBody: rgb(245, 173, 173);
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Palette Mosaic', cursive;
+}
+body{
+    background-color: $backgroundColorBody;
+    display: flex;
+    width: 99%;
+    margin: auto;
+    // margin-left: 10px;
+}
